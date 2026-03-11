@@ -1,28 +1,5 @@
-// Background Stars Generation
-const starsContainer = document.getElementById('stars');
-const starCount = 150;
-
-function createStars() {
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        const size = Math.random() * 2 + 1;
-        const duration = Math.random() * 3 + 2;
-
-        star.style.left = `${x}%`;
-        star.style.top = `${y}%`;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        star.style.setProperty('--duration', `${duration}s`);
-        
-        starsContainer.appendChild(star);
-    }
-}
-
-createStars();
+// Set dark mode as default for that "Aesthetic" look
+document.body.setAttribute('data-theme', 'dark');
 
 // Message Reveal Implementation
 const openBtn = document.getElementById('openBtn');
@@ -31,7 +8,6 @@ const secretMessage = document.getElementById('secretMessage');
 openBtn.addEventListener('click', () => {
     // Elegant transition
     openBtn.style.opacity = '0';
-    openBtn.style.transform = 'translateY(-20px) scale(0.9)';
     openBtn.style.pointerEvents = 'none';
     
     setTimeout(() => {
@@ -39,29 +15,31 @@ openBtn.addEventListener('click', () => {
         secretMessage.classList.remove('hidden');
         secretMessage.classList.add('show-message');
         
-        // Premium Festive Confetti
-        launchPremiumConfetti();
-    }, 400);
+        // Launch subtle festive confetti
+        launchMinimalConfetti();
+    }, 300);
 });
 
-function launchPremiumConfetti() {
-    const end = Date.now() + (4 * 1000);
-    const colors = ['#d4af37', '#ffd700', '#ffffff', '#f8f9fa'];
+function launchMinimalConfetti() {
+    const end = Date.now() + (2 * 1000); 
+    const colors = ['#c5a059', '#e9c46a', '#ffffff'];
 
     (function frame() {
         confetti({
-            particleCount: 3,
+            particleCount: 2,
             angle: 60,
             spread: 55,
-            origin: { x: 0 },
-            colors: colors
+            origin: { x: 0, y: 0.7 },
+            colors: colors,
+            scalar: 0.7
         });
         confetti({
-            particleCount: 3,
+            particleCount: 2,
             angle: 120,
             spread: 55,
-            origin: { x: 1 },
-            colors: colors
+            origin: { x: 1, y: 0.7 },
+            colors: colors,
+            scalar: 0.7
         });
 
         if (Date.now() < end) {
@@ -69,24 +47,3 @@ function launchPremiumConfetti() {
         }
     }());
 }
-
-// Smooth Card Parallax
-const card = document.getElementById('card');
-document.addEventListener('mousemove', (e) => {
-    const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-    const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-    
-    if (window.innerWidth > 768) { // Only for desktop
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-10px)`;
-    }
-});
-
-// Reset card on mouse leave
-document.addEventListener('mouseleave', () => {
-    card.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0px)`;
-    card.style.transition = "all 0.5s ease";
-});
-
-document.addEventListener('mouseenter', () => {
-    card.style.transition = "none";
-});
