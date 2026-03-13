@@ -86,9 +86,9 @@ body::before {
 
 .main-title {
   font-family: "Playfair Display", serif;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1;
   margin-bottom: 8px;
   color: var(--text);
 }
@@ -254,9 +254,14 @@ body::before {
 
 @media (max-width: 500px) {
   .main-title {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
   }
   .glass-card {
     padding: 40px 20px;
+  }
+}
+@media screen and (max-width: 468px) {
+  .greeting {
+    font-size: 1.5rem;
   }
 }

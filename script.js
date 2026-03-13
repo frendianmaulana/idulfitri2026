@@ -50,8 +50,24 @@ function launchMinimalConfetti() {
 
 // === FITUR EXIT NOTIFICATION & VIBRATE ===
 
+// Variable buat nandaik kalo lagi refresh doang
+let isLagiRefresh = false;
+
+// Trik deteksi kalo user neken F5 atau Ctrl+R (Refresh jalur keyboard)
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'F5' || (e.ctrlKey && e.key.toLowerCase() === 'r') || (e.metaKey && e.key.toLowerCase() === 'r')) {
+        isLagiRefresh = true;
+    }
+});
+
 // Deteksi saat user mau close tab (Prompt Browser)
 window.addEventListener('beforeunload', (e) => {
+    // Kalo keciduk cuma refresh, bablasin aja tanpa warning
+    if (isLagiRefresh) {
+        isLagiRefresh = false; // Reset state
+        return; 
+    }
+
     // Kasih getaran dikit biar berasa
     if (navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
