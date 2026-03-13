@@ -47,3 +47,39 @@ function launchMinimalConfetti() {
         }
     }());
 }
+
+// === FITUR EXIT NOTIFICATION & VIBRATE ===
+
+// Deteksi saat user mau close tab (Prompt Browser)
+window.addEventListener('beforeunload', (e) => {
+    // Kasih getaran dikit biar berasa
+    if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 100]);
+    }
+
+    // Standard untuk munculin pop-up "Are you sure?"
+    e.preventDefault();
+    e.returnValue = '';
+});
+
+// Trick Deteksi Exit Intent (Munculin Toast pas kursor keluar layar atas)
+document.addEventListener('mouseleave', (e) => {
+    if (e.clientY <= 0) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Waduh, mau kemana tuh?',
+            text: 'Jangan lupa maaf-maafan dulu sama temen-temen!',
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            didOpen: () => {
+                // Getar HP pas toast muncul
+                if (navigator.vibrate) {
+                    navigator.vibrate(100);
+                }
+            }
+        });
+    }
+});
