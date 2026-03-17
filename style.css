@@ -157,6 +157,14 @@ body::before {
   animation: fadeIn 0.8s ease forwards;
 }
 
+.bolder {
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--border);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -192,6 +200,16 @@ body::before {
 .signature p {
   font-size: 0.85rem;
   color: var(--text-light);
+}
+
+.signature-font {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.8rem;
+  color: var(--primary);
+  margin: 5px 0 0px;
+  transform: rotate(-3deg);
+  font-weight: 700;
+  opacity: 0.9;
 }
 
 .signature h3 {
