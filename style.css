@@ -323,6 +323,29 @@ body::before {
   font-weight: 600;
 }
 
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.wa-btn:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+  color: #fff;
+}
+
 @media (max-width: 500px) {
   .main-title { font-size: 1.8rem; }
   .glass-card { padding: 40px 20px; border-radius: 30px; }
